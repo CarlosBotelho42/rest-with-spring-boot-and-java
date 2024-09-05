@@ -37,6 +37,12 @@ public class GreetingController {
         return convertToDouble(number1) * convertToDouble(number2);
     }
 
+    @RequestMapping("/div/{number1}/{number2}")
+    public Double div(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2) throws Exception {
+        verifyNumbers(number1, number2);
+        return convertToDouble(number1) / convertToDouble(number2);
+    }
+
     private void verifyNumbers(String number1, String number2) {
         if (!isNumeric(number1) || !isNumeric(number2)) {
             throw new UnsupportedMathOperatorException("Operacao permida apenas com valores numericos!");
