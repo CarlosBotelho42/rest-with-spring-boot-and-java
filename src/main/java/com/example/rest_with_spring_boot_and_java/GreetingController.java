@@ -21,10 +21,20 @@ public class GreetingController {
 
     @RequestMapping("/sum/{number1}/{number2}")
     public Double sum(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2) throws Exception {
+        verifyNumbers(number1, number2);
+        return convertToDouble(number1) + convertToDouble(number2);
+    }
+
+    @RequestMapping("/sub/{number1}/{number2}")
+    public Double sub(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2) throws Exception {
+        verifyNumbers(number1, number2);
+        return convertToDouble(number1) - convertToDouble(number2);
+    }
+
+    private void verifyNumbers(String number1, String number2) {
         if (!isNumeric(number1) || !isNumeric(number2)) {
             throw new UnsupportedMathOperatorException("Operacao permida apenas com valores numericos!");
         }
-        return convertToDouble(number1) + convertToDouble(number2);
     }
 
     private Double convertToDouble(String strNumber) {
