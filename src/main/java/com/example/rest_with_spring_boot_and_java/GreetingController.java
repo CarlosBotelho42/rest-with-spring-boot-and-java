@@ -20,39 +20,49 @@ public class GreetingController {
     }
 
     @RequestMapping("/sum/{number1}/{number2}")
-    public Double sum(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2) throws Exception {
-        verifyNumbers(number1, number2);
+    public Double sum(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2){
+        verifyNumber(number1, number2);
         return convertToDouble(number1) + convertToDouble(number2);
     }
 
     @RequestMapping("/sub/{number1}/{number2}")
-    public Double sub(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2) throws Exception {
-        verifyNumbers(number1, number2);
+    public Double sub(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2){
+        verifyNumber(number1, number2);
         return convertToDouble(number1) - convertToDouble(number2);
     }
 
     @RequestMapping("/multi/{number1}/{number2}")
-    public Double multi(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2) throws Exception {
-        verifyNumbers(number1, number2);
+    public Double multi(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2){
+        verifyNumber(number1, number2);
         return convertToDouble(number1) * convertToDouble(number2);
     }
 
     @RequestMapping("/div/{number1}/{number2}")
-    public Double div(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2) throws Exception {
-        verifyNumbers(number1, number2);
+    public Double div(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2){
+        verifyNumber(number1, number2);
         return convertToDouble(number1) / convertToDouble(number2);
     }
 
     @RequestMapping("/average/{number1}/{number2}")
-    public Double average(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2) throws Exception {
-        verifyNumbers(number1, number2);
+    public Double average(@PathVariable(value = "number1") String number1, @PathVariable("number2") String number2){
+        verifyNumber(number1, number2);
         return (convertToDouble(number1) + convertToDouble(number2)) / 2;
     }
 
+    @RequestMapping("/sqrt/{number}")
+    public Double sqrt(@PathVariable(value = "number") String number){
+        verifyNumber(number);
+        return Math.sqrt(Double.parseDouble(number));
+    }
 
-
-    private void verifyNumbers(String number1, String number2) {
+    private void verifyNumber(String number1, String number2) {
         if (!isNumeric(number1) || !isNumeric(number2)) {
+            throw new UnsupportedMathOperatorException("Operacao permida apenas com valores numericos!");
+        }
+    }
+
+    private void verifyNumber(String number) {
+        if (!isNumeric(number)) {
             throw new UnsupportedMathOperatorException("Operacao permida apenas com valores numericos!");
         }
     }
