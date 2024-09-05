@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+// TODO Separar as regras d enegocio do controller
 @RestController
 public class GreetingController {
 
