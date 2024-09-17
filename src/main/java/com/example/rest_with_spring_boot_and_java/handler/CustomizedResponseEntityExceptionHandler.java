@@ -1,4 +1,4 @@
-package com.example.rest_with_spring_boot_and_java.exceptions.handler;
+package com.example.rest_with_spring_boot_and_java.handler;
 
 import com.example.rest_with_spring_boot_and_java.exceptions.ExceptionResponse;
 import com.example.rest_with_spring_boot_and_java.exceptions.UnsupportedMathOperatorException;
